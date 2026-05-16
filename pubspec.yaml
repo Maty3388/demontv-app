@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  better_player: ^0.0.84
+  better_player: ^0.0.63
   http: ^1.1.0
   provider: ^6.1.1
   cached_network_image: ^3.3.0
