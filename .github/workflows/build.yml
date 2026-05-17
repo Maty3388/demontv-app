@@ -19,8 +19,10 @@ jobs:
           flutter create --org com.demontv --project-name demon_tv_plus tmp_app
           cp -r tmp_app/android .
           rm -rf tmp_app
-          sed -i 's/<manifest xmlns:android="http:\/\/schemas.android.com\/apk\/res\/android">/<manifest xmlns:android="http:\/\/schemas.android.com\/apk\/res\/android">\n    <uses-permission android:name="android.permission.INTERNET"\/>/' android/app/src/main/AndroidManifest.xml
-          cat android/app/src/main/AndroidManifest.xml
+          # Permiso internet
+          sed -i 's/<manifest xmlns:android="http:\/\/schemas.android.com\/apk\/res\/android">/<manifest xmlns:android="http:\/\/schemas.android.com\/apk\/res\/android">\n    <uses-permission android:name="android.permission.INTERNET"\/>\n    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"\/>\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"\/>\n    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"\/>\n    <uses-feature android:name="android.software.leanback" android:required="false"\/>\n    <uses-feature android:name="android.hardware.touchscreen" android:required="false"\/>/' android/app/src/main/AndroidManifest.xml
+          # TV launcher
+          sed -i 's/<action android:name="android.intent.action.MAIN"\/>/<action android:name="android.intent.action.MAIN"\/>\n                <category android:name="android.intent.category.LEANBACK_LAUNCHER"\/>/' android/app/src/main/AndroidManifest.xml
       - run: flutter pub get
       - run: flutter build apk --release --no-tree-shake-icons
       - uses: actions/upload-artifact@v4
