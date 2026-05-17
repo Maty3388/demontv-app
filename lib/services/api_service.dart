@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/models.dart';
 
 class ApiService {
-  static const String baseUrl = 'https://149.104.92.205';
+  static const String baseUrl = 'http://149.104.92.205:25461';
   static String? _token;
 
   static Map<String, String> get _headers => {
@@ -15,7 +15,7 @@ class ApiService {
   static void clearToken() => _token = null;
   
   static String getProxyUrl(String channelId) {
-    return "https://149.104.92.205/proxy/stream?id=$channelId";
+    return "http://149.104.92.205:25461/proxy/stream?id=$channelId";
   }
   static bool get isLoggedIn => _token != null;
 
