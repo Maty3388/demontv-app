@@ -6,7 +6,7 @@ DeviceType getDeviceType(BuildContext context) {
   final size = MediaQuery.of(context).size;
   final width = size.width;
   // TV Box generalmente tiene 960dp+ de ancho
-  if (width >= 800) return DeviceType.tv;
+  if (width >= 500) return DeviceType.tv;
   return DeviceType.phone;
 }
 
