@@ -2,11 +2,10 @@ import "package:flutter/material.dart";
 
 enum DeviceType { phone, tv }
 
-const bool kIsTV = true;
+// TRUE = APK para Android TV/TV Box
+// FALSE = APK para celular
+const bool kIsAndroidTV = true;
 
-DeviceType getDeviceType(BuildContext context) {
-  if (kIsTV) return DeviceType.tv;
-  return DeviceType.phone;
-}
+DeviceType getDeviceType(BuildContext context) => kIsAndroidTV ? DeviceType.tv : DeviceType.phone;
 
-bool isTV(BuildContext context) => getDeviceType(context) == DeviceType.tv;
+bool isTV(BuildContext context) => kIsAndroidTV;
