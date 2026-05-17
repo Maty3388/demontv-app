@@ -18,12 +18,12 @@ class _State extends State<HomeScreen> {
   Future<void> _load() async {
     try {
       final r1 = await ApiService.getChannels();
-      final r2 = await ApiService.getMovies(featured: true);
-      final r3 = await ApiService.getSeries(featured: true);
+      final r2 = await ApiService.getMovies(featuredOnly: true);
+      final r3 = await ApiService.getSeries(featuredOnly: true);
       setState(() {
-        _channels = r1['channels'] ?? [];
-        _movies   = r2['movies']   ?? [];
-        _series   = r3['series']   ?? [];
+        _channels = (r1 as Map)["channels"] ?? [];
+        _movies = r2 as List;
+        _series = r3 as List;
         _loading  = false;
       });
     } catch (_) { setState(() => _loading = false); }
@@ -90,7 +90,7 @@ class _State extends State<HomeScreen> {
               if (ch['logo']?.isNotEmpty == true)
                 ClipRRect(borderRadius: BorderRadius.circular(8),
                   child: CachedNetworkImage(imageUrl: ch['logo'], width: 50, height: 40, fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) => const Icon(Icons.tv, color: AppTheme.textHint, size: 30)))
+                    errorWidget: (_, __, ___) => const Icon(Icons.tv, color: AppTheme.textHint, size: 30)))
               else const Icon(Icons.tv, color: AppTheme.textHint, size: 30),
               const SizedBox(height: 6),
               Padding(padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -114,7 +114,7 @@ class _State extends State<HomeScreen> {
               Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 child: m['poster']?.isNotEmpty == true
                   ? CachedNetworkImage(imageUrl: m['poster'], fit: BoxFit.cover, width: double.infinity,
-                      errorBuilder: (_, __, ___) => const Icon(Icons.movie, color: AppTheme.textHint, size: 40))
+                      errorWidget: (_, __, ___) => const Icon(Icons.movie, color: AppTheme.textHint, size: 40))
                   : const Center(child: Icon(Icons.movie, color: AppTheme.textHint, size: 40)))),
               Padding(padding: const EdgeInsets.all(6),
                 child: Text(m['title'] ?? '', style: const TextStyle(color: Colors.white, fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis)),
@@ -137,7 +137,7 @@ class _State extends State<HomeScreen> {
               Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 child: s['poster']?.isNotEmpty == true
                   ? CachedNetworkImage(imageUrl: s['poster'], fit: BoxFit.cover, width: double.infinity,
-                      errorBuilder: (_, __, ___) => const Icon(Icons.tv, color: AppTheme.textHint, size: 40))
+                      errorWidget: (_, __, ___) => const Icon(Icons.tv, color: AppTheme.textHint, size: 40))
                   : const Center(child: Icon(Icons.tv, color: AppTheme.textHint, size: 40)))),
               Padding(padding: const EdgeInsets.all(6),
                 child: Text(s['title'] ?? '', style: const TextStyle(color: Colors.white, fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis)),

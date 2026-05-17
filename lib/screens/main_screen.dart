@@ -44,7 +44,7 @@ class _State extends State<MainScreen> {
       child: SafeArea(child: Padding(padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(_navItems.length, (i) => _PhoneNavItem(
-            data: _navItems[i], index: i, selected: _idx, onTap: (i) => setState(() => _idx = i)))))),
+            data: _navItems[i], index: i, selected: _idx, onTap: (i) => setState(() => _idx = i))))))),
   );
 
   Widget _buildTV() => Scaffold(
