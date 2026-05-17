@@ -33,7 +33,7 @@ class _State extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constraints) {
-      if (kIsAndroidTV) return _buildTV();
+      if (true) return _buildTV();
       return _buildPhone();
     });
   }

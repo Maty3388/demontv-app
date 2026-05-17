@@ -35,8 +35,7 @@ class _State extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (isTV(context)) return _buildTV();
-    return _buildPhone();
+    return _buildTV();
   }
 
   Widget _buildTV() => Scaffold(

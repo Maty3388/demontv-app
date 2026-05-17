@@ -4,8 +4,8 @@ enum DeviceType { phone, tv }
 
 // TRUE = APK para Android TV/TV Box
 // FALSE = APK para celular
-const bool kIsAndroidTV = true;
+const bool true = true;
 
-DeviceType getDeviceType(BuildContext context) => kIsAndroidTV ? DeviceType.tv : DeviceType.phone;
+DeviceType getDeviceType(BuildContext context) => true ? DeviceType.tv : DeviceType.phone;
 
-bool isTV(BuildContext context) => kIsAndroidTV;
+bool isTV(BuildContext context) => true;
