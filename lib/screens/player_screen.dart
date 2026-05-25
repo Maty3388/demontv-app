@@ -14,6 +14,8 @@ class PlayerScreen extends StatefulWidget {
 class _State extends State<PlayerScreen> {
   VideoPlayerController? _ctrl;
   bool _buffering = true;
+  Timer? _reconnectTimer;
+  int _reconnectAttempts = 0;
 
   @override
   void initState() {
@@ -28,11 +30,25 @@ class _State extends State<PlayerScreen> {
     await ctrl.initialize();
     if (!mounted) return;
     setState(() { _ctrl = ctrl; _buffering = false; });
+    ctrl.addListener(() {
+      if (!mounted) return;
+      final val = ctrl.value;
+      if (val.hasError && _reconnectAttempts < 5) {
+        _reconnectTimer?.cancel();
+        _reconnectTimer = Timer(const Duration(seconds: 3), () {
+          _reconnectAttempts++;
+          _initPlayer();
+        });
+      } else if (!val.hasError) {
+        _reconnectAttempts = 0;
+      }
+    });
     ctrl.play();
   }
 
   @override
   void dispose() {
+    _reconnectTimer?.cancel();
     _ctrl?.dispose();
     super.dispose();
   }
