@@ -52,7 +52,7 @@ class _State extends State<VodScreen> {
           const SliverToBoxAdapter(child: Padding(padding: EdgeInsets.only(left: 16, bottom: 12), child: _GradientText('INGRESOS NUEVOS'))),
           SliverPadding(padding: const EdgeInsets.symmetric(horizontal: 12),
             sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 8, mainAxisSpacing: 8, childAspectRatio: 0.65),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, crossAxisSpacing: 6, mainAxisSpacing: 6, childAspectRatio: 0.6),
               delegate: SliverChildBuilderDelegate((ctx, i) => _ContentCard(content: _all[i % _all.length]), childCount: _all.isEmpty ? 0 : _all.length))),
           const SliverToBoxAdapter(child: SizedBox(height: 24)),
         ])),
