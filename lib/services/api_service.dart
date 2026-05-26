@@ -94,9 +94,9 @@ class ApiService {
   }
 
   static Content _movieFromJson(Map<String, dynamic> j) => Content(
-    id: j['id'], title: j['title'], posterUrl: j['poster'] ?? '',
+    id: j['id'], title: j['title'], posterUrl: j['posterUrl'] ?? j['poster'] ?? '',
     type: ContentType.movie, year: j['year']?.toString(), rating: j['rating']?.toString(),
-    description: j['description'], streamUrl: j['stream_url']?.isEmpty == true ? null : j['stream_url'],
+    description: j['description'], streamUrl: (j['streamUrl'] ?? j['stream_url'] ?? '').isEmpty ? null : (j['streamUrl'] ?? j['stream_url']),
   );
 
   static Content _seriesFromJson(Map<String, dynamic> j) {
@@ -106,6 +106,6 @@ class ApiService {
         episodes.add(Episode(id: ep['id'], title: ep['title'], season: season['season'], episode: ep['episode'], streamUrl: ep['stream_url'] ?? '', thumbnailUrl: ep['thumbnail']));
       }
     }
-    return Content(id: j['id'], title: j['title'], posterUrl: j['poster'] ?? '', type: ContentType.series, year: j['year']?.toString(), rating: j['rating']?.toString(), description: j['description'], episodes: episodes);
+    return Content(id: j['id'], title: j['title'], posterUrl: j['posterUrl'] ?? j['poster'] ?? '', type: ContentType.series, year: j['year']?.toString(), rating: j['rating']?.toString(), description: j['description'], episodes: episodes);
   }
 }
