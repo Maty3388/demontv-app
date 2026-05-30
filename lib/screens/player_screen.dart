@@ -24,9 +24,18 @@ class _State extends State<PlayerScreen> {
   }
 
   Future<void> _initPlayer() async {
-    final url = widget.channel.streamUrl.split('|')[0].trim();
-    final ctrl = VideoPlayerController.networkUrl(Uri.parse(url),
-      httpHeaders: {'User-Agent': 'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36'});
+    final rawUrl = widget.channel.streamUrl;
+    final parts = rawUrl.split('|');
+    final url = parts[0].trim();
+    final headers = <String, String>{'User-Agent': 'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36'};
+    if (parts.length > 1) {
+      for (final kv in parts[1].split('&')) {
+        final idx = kv.indexOf('=');
+        if (idx > 0) headers[kv.substring(0, idx).trim()] = kv.substring(idx + 1).trim();
+      }
+    }
+    headers.addAll(widget.channel.headers);
+    final ctrl = VideoPlayerController.networkUrl(Uri.parse(url), httpHeaders: headers);
     await ctrl.initialize();
     if (!mounted) return;
     setState(() { _ctrl = ctrl; _buffering = false; });
