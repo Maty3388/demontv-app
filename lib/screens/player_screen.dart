@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import '../models/models.dart';
@@ -17,7 +18,12 @@ class _State extends State<PlayerScreen> {
   int _reconnectAttempts = 0;
 
   @override
-  void initState() { super.initState(); _initPlayer(); }
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    _initPlayer();
+  }
 
   Future<void> _initPlayer() async {
     final rawUrl = widget.channel.streamUrl;
@@ -47,7 +53,13 @@ class _State extends State<PlayerScreen> {
   }
 
   @override
-  void dispose() { _reconnectTimer?.cancel(); _ctrl?.dispose(); super.dispose(); }
+  void dispose() {
+    _reconnectTimer?.cancel();
+    _ctrl?.dispose();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
