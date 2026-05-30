@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/update_checker.dart';
 import '../theme/app_theme.dart';
 import '../utils/device_type.dart';
 import 'home_screen.dart';
@@ -13,6 +14,14 @@ class MainScreen extends StatefulWidget {
 
 class _State extends State<MainScreen> {
   int _idx = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      UpdateChecker.check(context);
+    });
+  }
 
   final _screens = const [
     HomeScreen(),
