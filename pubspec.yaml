@@ -1,6 +1,6 @@
 name: demon_tv_plus
 description: DemonTv Plus - App de Streaming
-version: 1.1.5+7
+version: 1.1.6+8
 publish_to: 'none'
 
 environment:
@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   video_player: ^2.8.6
   http: ^1.1.0
+  package_info_plus: ^5.0.1
+  url_launcher: ^6.2.5
   provider: ^6.1.1
   cached_network_image: ^3.3.0
   carousel_slider: ^4.2.1
