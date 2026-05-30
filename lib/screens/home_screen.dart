@@ -87,7 +87,9 @@ class _State extends State<HomeScreen> {
           onTap: () => Navigator.pushNamed(ctx, '/player', arguments: ch),
           child: Container(
             width: 120, margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(
+                color: [const Color(0xFF1A1A2E), const Color(0xFF16213E), const Color(0xFF0F3460), const Color(0xFF1B262C), const Color(0xFF2C003E)][ch['name'].length % 5],
+                borderRadius: BorderRadius.circular(12)),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               if (ch['logo']?.isNotEmpty == true)
                 ClipRRect(borderRadius: BorderRadius.circular(8),
@@ -111,7 +113,9 @@ class _State extends State<HomeScreen> {
           onTap: () => Navigator.pushNamed(ctx, '/content', arguments: m),
           child: Container(
             width: 110, margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(
+                color: [const Color(0xFF1A1A2E), const Color(0xFF16213E), const Color(0xFF0F3460), const Color(0xFF1B262C), const Color(0xFF2C003E)][ch['name'].length % 5],
+                borderRadius: BorderRadius.circular(12)),
             child: Column(children: [
               Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 child: m['poster']?.isNotEmpty == true
@@ -134,7 +138,9 @@ class _State extends State<HomeScreen> {
           onTap: () => Navigator.pushNamed(ctx, '/content', arguments: s),
           child: Container(
             width: 110, margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(
+                color: [const Color(0xFF1A1A2E), const Color(0xFF16213E), const Color(0xFF0F3460), const Color(0xFF1B262C), const Color(0xFF2C003E)][ch['name'].length % 5],
+                borderRadius: BorderRadius.circular(12)),
             child: Column(children: [
               Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 child: s['poster']?.isNotEmpty == true
@@ -152,5 +158,9 @@ class _SectionTitle extends StatelessWidget {
   const _SectionTitle({required this.title});
   @override Widget build(BuildContext context) => SliverToBoxAdapter(
     child: Padding(padding: const EdgeInsets.fromLTRB(16, 20, 16, 10),
-      child: Text(title, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))));
+      child: Row(children: [
+        Text(title, style: const TextStyle(color: Color(0xFFFFD700), fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 0.8)),
+        const SizedBox(width: 8),
+        Expanded(child: Container(height: 1, decoration: const BoxDecoration(gradient: LinearGradient(colors: [Color(0xFFFFD700), Colors.transparent])))),
+      ])));
 }
