@@ -87,9 +87,7 @@ class _State extends State<HomeScreen> {
           onTap: () => Navigator.pushNamed(ctx, '/player', arguments: ch),
           child: Container(
             width: 120, margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-                color: [const Color(0xFF1A1A2E), const Color(0xFF16213E), const Color(0xFF0F3460), const Color(0xFF1B262C), const Color(0xFF2C003E)][ch['name'].length % 5],
-                borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(12)),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               if (ch['logo']?.isNotEmpty == true)
                 ClipRRect(borderRadius: BorderRadius.circular(8),
@@ -113,9 +111,7 @@ class _State extends State<HomeScreen> {
           onTap: () => Navigator.pushNamed(ctx, '/content', arguments: m),
           child: Container(
             width: 110, margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-                color: [const Color(0xFF1A1A2E), const Color(0xFF16213E), const Color(0xFF0F3460), const Color(0xFF1B262C), const Color(0xFF2C003E)][ch['name'].length % 5],
-                borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(12)),
             child: Column(children: [
               Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 child: m['poster']?.isNotEmpty == true
@@ -138,9 +134,7 @@ class _State extends State<HomeScreen> {
           onTap: () => Navigator.pushNamed(ctx, '/content', arguments: s),
           child: Container(
             width: 110, margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-                color: [const Color(0xFF1A1A2E), const Color(0xFF16213E), const Color(0xFF0F3460), const Color(0xFF1B262C), const Color(0xFF2C003E)][ch['name'].length % 5],
-                borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(12)),
             child: Column(children: [
               Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 child: s['poster']?.isNotEmpty == true
