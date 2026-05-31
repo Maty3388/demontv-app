@@ -87,7 +87,9 @@ class _State extends State<HomeScreen> {
           onTap: () => Navigator.pushNamed(ctx, '/player', arguments: ch),
           child: Container(
             width: 120, margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(
+                color: [const Color(0xFF1A1A2E), const Color(0xFF16213E), const Color(0xFF0F3460), const Color(0xFF1B262C), const Color(0xFF2C003E)][i % 5],
+                borderRadius: BorderRadius.circular(12)),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               if (ch['logo']?.isNotEmpty == true)
                 ClipRRect(borderRadius: BorderRadius.circular(8),
