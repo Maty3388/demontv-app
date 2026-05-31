@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:better_player/better_player.dart';
+import 'package:better_player/better_player.dart';
 import '../models/models.dart';
 import '../theme/app_theme.dart';
 
