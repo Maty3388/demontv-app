@@ -21,6 +21,9 @@ jobs:
           rm -rf tmp_app
           # Permiso internet
           sed -i 's/<manifest xmlns:android="http:\/\/schemas.android.com\/apk\/res\/android">/<manifest xmlns:android="http:\/\/schemas.android.com\/apk\/res\/android">\n    <uses-permission android:name="android.permission.INTERNET"\/>\n    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"\/>\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"\/>\n    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"\/>\n    <uses-feature android:name="android.software.leanback" android:required="false"\/>\n    <uses-feature android:name="android.hardware.touchscreen" android:required="false"\/>/' android/app/src/main/AndroidManifest.xml
+          # Kotlin version
+          find . -name 'settings.gradle' | xargs grep -l 'kotlin' 2>/dev/null | xargs sed -i 's/version "[0-9.]*"/version "1.9.22"/g' || true
+          find . -name 'build.gradle' | xargs grep -l 'kotlin_version' 2>/dev/null | xargs sed -i 's/kotlin_version = "[0-9.]*"/kotlin_version = "1.9.22"/g' || true
           # minSdk
           sed -i 's/minSdkVersion flutter.minSdkVersion/minSdkVersion 21/' android/app/build.gradle || true
           sed -i 's/minSdkVersion 16/minSdkVersion 21/' android/app/build.gradle || true
