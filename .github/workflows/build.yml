@@ -24,8 +24,9 @@ jobs:
           # minSdk
           sed -i 's/minSdkVersion flutter.minSdkVersion/minSdkVersion 21/' android/app/build.gradle || true
           sed -i 's/minSdkVersion 16/minSdkVersion 21/' android/app/build.gradle || true
-          sed -i 's/ext.kotlin_version = .*/ext.kotlin_version = "1.9.0"/' android/build.gradle || true
-          sed -i "s/id 'org.jetbrains.kotlin.android' version .*/id 'org.jetbrains.kotlin.android' version '1.9.0' apply false/" android/settings.gradle || true
+          sed -i 's/ext.kotlin_version = .*/ext.kotlin_version = "2.0.0"/' android/build.gradle || true
+          sed -i "s/id 'org.jetbrains.kotlin.android' version .*/id 'org.jetbrains.kotlin.android' version '2.0.0' apply false/" android/settings.gradle || true
+          sed -i 's/org.jetbrains.kotlin.android:1\.8\.[0-9]*/org.jetbrains.kotlin.android:2.0.0/g' android/settings.gradle || true
           # TV launcher
           sed -i 's/<action android:name="android.intent.action.MAIN"\/>/<action android:name="android.intent.action.MAIN"\/>\n                <category android:name="android.intent.category.LEANBACK_LAUNCHER"\/>/' android/app/src/main/AndroidManifest.xml
       - run: flutter pub get
