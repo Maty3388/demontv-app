@@ -24,7 +24,7 @@ class _State extends State<LiveTvScreen> {
     try {
       final channels = await ApiService.getChannels(search: _search.isEmpty ? null : _search);
       setState(() => _channels = channels);
-    } catch (_) {}
+    } catch (e) { print('Error: $e'); }
     setState(() => _loading = false);
   }
 
