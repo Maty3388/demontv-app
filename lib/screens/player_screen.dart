@@ -69,7 +69,7 @@ class _State extends State<PlayerScreen> {
           if (e.betterPlayerEventType == BetterPlayerEventType.exception) {
             if (mounted) setState(() => _hasError = true);
             _reconnectTimer?.cancel();
-            _reconnectTimer = Timer(const Duration(seconds: 3), () {
+            _reconnectTimer = Timer(const Duration(seconds: 5), () {
               if (mounted) { setState(() => _hasError = false); _initPlayer(); }
             });
           } else if (e.betterPlayerEventType == BetterPlayerEventType.initialized) {
